@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # If the request is for a directory or a file that exists, do nothing
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Rewrite the URL to add the .php extension
+    RewriteRule ^(.*)$ $1.php [L,QSA]
+
+    # Optionally, remove trailing slash from the URL
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)/$ $1 [R=301,L]
+</IfModule>
